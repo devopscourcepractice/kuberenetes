@@ -1,5 +1,5 @@
 # kuberenetes
-launch aws account with 2cpu 4gb ram
+launch aws EC2 instance with 2cpu 4gb ram
 Certainly! To install Minikube on an Ubuntu EC2 instance, follow these steps:
  Install Kubectl (command-line client for Kubernetes): curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  chmod +x ./kubectl
