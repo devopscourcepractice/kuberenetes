@@ -1,0 +1,5 @@
+what is kuberenetes
+kuberenetes an opensource platform for automating deployment scalling and oparations of application container.
+kuberenetes componants
+control pland : Api server, scheduler,etcd,controlle manager
+dataplane: kubelet,kubeproxy,kubeadm,container runtime 
