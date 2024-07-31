@@ -14,4 +14,19 @@ chmod +x minikube
 
  Start Minikube : minikube start --driver=docker --force
 
-Check Minikube status: minikube status
+Check Minikube status: minikube staus
+
+
+create deployment 
+kubectl create -f deployment.yaml
+kubectl get deploy
+kubectl get pods
+
+create service with nodeport 
+kubectl create -f service.yaml
+kubectl get svc 
+minikube service servicename --url   without proxy it will work 
+
+ to connect minikube cluste
+ minikube ssh
+ try to access the application wih curl
