@@ -30,3 +30,35 @@ minikube service servicename --url   without proxy it will work
  to connect minikube cluste
  minikube ssh
  try to access the application wih curl
+
+
+ AWS CLI instalation 
+
+ To install the AWS CLI on Ubuntu running on WSL (Windows Subsystem for Linux), follow these steps:
+
+1. **Update your package list and install prerequisites**:
+    ```bash
+    sudo apt update
+    sudo apt install curl unzip -y
+    ```
+
+2. **Download the AWS CLI installer**:
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+
+3. **Unzip the downloaded package**:
+    unzip awscliv2.zip
+
+
+4. **Run the installer**:
+  sudo ./aws/install
+
+
+5. **Verify the installation**:
+    
+    aws --version
+
+
+
+
+
