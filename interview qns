@@ -3,3 +3,5 @@ kuberenetes an opensource platform for automating deployment scalling and oparat
 kuberenetes componants
 control pland : Api server, scheduler,etcd,controlle manager
 dataplane: kubelet,kubeproxy,kubeadm,container runtime 
+How to add cloudwatch log to eks cluster 
+eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=us-east-1 --cluster=demo-cluster
