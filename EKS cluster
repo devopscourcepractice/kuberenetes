@@ -40,3 +40,43 @@ eksctl create fargateprofile \
     --region us-east-1 \
     --name alb-sample-app \
     --namespace game-2048
+Deploy the deployment, service and Ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
+
+configure-oidc-connector
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+
+Download IAM policy 
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+create IAM role
+create service account with aws account number, policy ,cluster name
+eksctl create iamserviceaccount \
+  --cluster=demo-cluster \
+  --namespace=kube-system \
+  --name=aws-load-balancer-controller \
+  --role-name AmazonEKSLoadBalancerControllerRole \
+  --attach-policy-arn=arn:aws:iam::992382639155:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve \
+  --override-existing-serviceaccounts
+
+
+Deploy ALB controller
+Add helm repo
+
+helm repo add eks https://aws.github.io/eks-charts
+Update the repo
+
+helm repo update eks
+Install
+
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \            
+  -n kube-system \
+  --set clusterName=demo-cluster \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller \
+  --set region=us-east-1 \
+  --set vpcId=vpc-07d68538651f5d6fc
+Verify that the deployments are running.
+
+kubectl get deployment -n kube-system aws-load-balancer-controller
+
