@@ -1,20 +1,33 @@
-# kuberenetes
-launch aws EC2 instance with 2cpu 4gb ram
-Certainly! To install Minikube on an Ubuntu EC2 instance, follow these steps:
- Install Kubectl (command-line client for Kubernetes): curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
- chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+Launch an EC2 Instance:
+Choose an Ubuntu AMI (e.g., Ubuntu Server 20.04 LTS).
+Select an instance type with at least 2 vCPUs (e.g., t3.micro).
+Configure security groups to allow SSH access.
+Connect to Your EC2 Instance:
+ssh -i <your-key-pair>.pem ubuntu@<your-ec2-public-ip>
 
-Install Docker (if not already installed): You can use the following shell script to install Docker: curl -fsSL https://get.docker.com -o get-docker.sh
- sh get-docker.sh
+Update the System:
+sudo apt update && sudo apt upgrade -y
 
- Install Minikube: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+Install Docker:
+sudo apt install -y docker.io
+sudo usermod -aG docker $USER
+newgrp docker
+
+Install kubectl:
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+Install Minikube:
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 chmod +x minikube
- sudo mv minikube /usr/local/bin/
+sudo mv minikube /usr/local/bin/
 
- Start Minikube : minikube start --driver=docker --force
+Start Minikube:
+sudo minikube start --driver=none
 
-Check Minikube status: minikube staus
+Verify the Installation:
+minikube status
 
 
 create deployment 
